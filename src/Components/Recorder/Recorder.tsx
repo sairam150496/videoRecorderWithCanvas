@@ -46,7 +46,7 @@ export default function Recorder(): JSX.Element{
                 context.fillText(new Date().toString(), 0, 100);
             }, 0)            
         }
-        setMediaRecorder(new MediaRecorder(canvas.captureStream()))
+        setMediaRecorder(new MediaRecorder(canvas.captureStream(30)))
     }
     const handleStop = ()=>{
         videoElement.current.pause()
