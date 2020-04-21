@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ScanditReader from './Components/ScanditReader/Components/ScanditReader';
-import Video from './Components/VideoInput/Video';
+// import ScanditReader from './Components/ScanditReader/Components/ScanditReader';
+// import Video from './Components/VideoInput/Video';
+import VideoComponent from './Components/VideoComponent/VideoComponent';
 // import Recorder from './Components/Recorder/Recorder';
 
 
@@ -38,7 +39,7 @@ import Video from './Components/VideoInput/Video';
 
 function App() {
   return(
-  <><Video /></>
+  <><VideoComponent /></>
   )
 }
 

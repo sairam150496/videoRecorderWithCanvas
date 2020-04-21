@@ -1,9 +1,6 @@
 import CheckCameraPermission from './Permissions'
+import Constraints from './Interfaces'
 
-interface Constraints{
-    audio?: boolean | MediaTrackConstraints;
-    video?: boolean | MediaTrackConstraints;
-}
 export default function Camera(constraints: Constraints){
     return new Promise((resolve, reject)=>{
         CheckCameraPermission()

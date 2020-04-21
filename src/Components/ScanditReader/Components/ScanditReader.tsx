@@ -1,4 +1,3 @@
-import React from 'react'
 import { Barcode, BarcodePicker, ScanSettings, configure } from "scandit-sdk";
 
 interface Configurations {
