@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Video from "./Video";
 
+
 export default function VideoComponent(): JSX.Element {
   const [video, setVideo] = useState<any>(null);
+  
   useEffect(() => {
-    setVideo(new Video(document.querySelector("canvas")!, {audio: true, video: true}));
+    setVideo(new Video(document.querySelector("canvas")!, {audio: {
+      autoGainControl: false,
+      noiseSuppression: false,
+      echoCancellation: true
+    }, video: true}));
   }, []);
   const checkPermissions = ()=>{
     video.cameraAccess((resp: any, err: any) => {
@@ -14,8 +20,13 @@ export default function VideoComponent(): JSX.Element {
     });
   }
   const handleStart = () => {
-    checkPermissions()
-    video.start();
+    checkPermissions() 
+    video.start((context: CanvasRenderingContext2D)=>{
+      context.font = "20px serif";
+      context.fillStyle = "white";
+      const str = video.getTime({format: 'mins'});
+      context.fillText(str, 0, 20, 300);
+    });
   };
   const handlePause = () => {
     video.pause();
@@ -31,6 +42,11 @@ export default function VideoComponent(): JSX.Element {
       }
     });
   };
+  const handleZoom = ()=>{
+    // video.setZoom(3)
+    // console.log(video.getConstraints())
+    // console.log(video.returnConstraints("zoom"))
+  }
   return (
     <>
       <canvas width="500" height="500" />
@@ -38,6 +54,7 @@ export default function VideoComponent(): JSX.Element {
       <button onClick={handlePause}>Pause</button>
       <button onClick={handlePlay}>Play</button>
       <button onClick={handleStop}>Stop</button>
+      <button onClick={handleZoom}>Zoom</button>
       <video id="player" autoPlay controls />
     </>
   );
